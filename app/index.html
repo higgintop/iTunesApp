@@ -1,0 +1,56 @@
+<!doctype html>
+<html ng-app="iTunesApp">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS Music Browsing App</title>
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div>
+      <h1> Music Search </h1>
+    </div>
+
+    <div ng-controller="SearchResultsController">
+      <input type="text" class="searchTerm" placeholder="search..." ng-model="searchTerm">
+      <button ng-click="doSearch()">Search</button>
+
+      <!-- search results -->
+      <div class="searchResults">
+        <!-- make a table to show results -->
+        <table>
+          <thead>
+            <tr>
+              <th>Sample</th>
+              <th>Album</th>
+              <th>Track</th>
+              <th>Artist</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="result in results">
+              <td>
+                <button ng-show="musicPlayer.isPlaying" ng-click="musicPlayer.stop()">Stop</button>
+                <button ng-show="!musicPlayer.isPlaying" ng-click="musicPlayer.play(result)">Play</button>
+              </td>
+              <td><img src="{{result.artworkUrl60}}"></td>
+              <td>{{result.trackName}}</td>
+              <td>{{result.artistName}}</td>
+            <tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+
+  
+    <!-- Vendor Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-route.js"></script>
+
+
+    <!-- Application Libraries -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
